@@ -1,14 +1,18 @@
-const brain = require('brain.js');
+const brain = require('brain');
+const Fighter = require('../lib/Fighter');
 
-const net = new brain.recurrent.LSTM();
+const net = new brain.NeuralNetwork();
+
 
 net.train([
-    { input: 'I am so happy', output: 'happy' },
-    { input: 'I am so sad', output: 'sad' },
-    { input: 'worst day ever', output: 'sad' },
-    { input: 'best day ever', output: 'happy' }
+    { input:[0,0], output:{zero:1} },
+    { input:[1,0], output:{one:1} },
+    { input:[0,1], output:{one:1} },
+    { input:[1,1], output:{zero:1} },
 ])
 
-const output = net.run('I am so happy');
+result = net.run([1,0]);
 
-console.log(output)
+console.log(result);
+
+module.exports = brain;
